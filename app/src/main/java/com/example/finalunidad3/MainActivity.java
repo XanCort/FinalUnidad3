@@ -6,6 +6,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -37,10 +38,16 @@ public class MainActivity extends AppCompatActivity {
         });
         casas = new ArrayList<>();
 
-        casas.add(new Casa(500000,"Sitio","comprar",R.drawable.ic_launcher_background,3));
-        casas.add(new Casa(1000,"Sitio","comprar",R.drawable.ic_launcher_background,3));
-        casas.add(new Casa(12000,"Sitio","alquilar",R.drawable.ic_launcher_background,3));
-        casas.add(new Casa(1,"Sitio","airbnb",R.drawable.ic_launcher_background,3));
+        casas.add(new Casa(250000, "Calle Principal 123", Casa.Tipo.COMPRAR, R.drawable.ic_launcher_background, 3));
+        casas.add(new Casa(150000, "Avenida Secundaria 45", Casa.Tipo.ALQUILAR, R.drawable.ic_launcher_background, 2));
+        casas.add(new Casa(100000, "Boulevard del Sol 67", Casa.Tipo.AIRBNB, R.drawable.ic_launcher_background, 1));
+        casas.add(new Casa(300000, "Paseo del Parque 89", Casa.Tipo.COMPRAR, R.drawable.ic_launcher_background, 4));
+        casas.add(new Casa(180000, "Calle Las Rosas 21", Casa.Tipo.ALQUILAR, R.drawable.ic_launcher_background, 3));
+        casas.add(new Casa(120000, "Avenida Las Palmas 33", Casa.Tipo.AIRBNB, R.drawable.ic_launcher_background, 2));
+        casas.add(new Casa(280000, "Callejón del Norte 10", Casa.Tipo.COMPRAR, R.drawable.ic_launcher_background, 3));
+        casas.add(new Casa(160000, "Camino Real 55", Casa.Tipo.ALQUILAR, R.drawable.ic_launcher_background, 2));
+        casas.add(new Casa(90000, "Plaza Central 22", Casa.Tipo.AIRBNB, R.drawable.ic_launcher_background, 1));
+        casas.add(new Casa(400000, "Residencial Diamante 88", Casa.Tipo.COMPRAR, R.drawable.ic_launcher_background, 5));
 
         casasFiltradas = new ArrayList<>();
         casasMostrar = new ArrayList<>();
@@ -57,7 +64,10 @@ public class MainActivity extends AppCompatActivity {
         botonBuscar.setOnClickListener(view -> filtrarCasas());
 
         // Crear el adaptador
-        casaAdapter = new CasaAdapter(casasMostrar);
+        casaAdapter = new CasaAdapter(casasMostrar, evento ->{
+
+            Toast.makeText(this, "Se ha notificado al vendedor", Toast.LENGTH_SHORT).show();
+        });
 
         // Instanciar el RecyclerView
         RecyclerView rvCasas = findViewById(R.id.listaCasas);
@@ -78,9 +88,12 @@ public class MainActivity extends AppCompatActivity {
             mostrarCasas();
         });
 
-
-
     }
+
+    /*
+    Método que filtra las viviendas por su tipo en funcion de los switch que haya activado(Comprar, alquilar, Airbnb)
+    Actualiza el adaptador para que muestre la nueva lista de viviendas disponibles
+     */
     private void mostrarCasas(){
         casasMostrar.clear();
 
@@ -88,7 +101,7 @@ public class MainActivity extends AppCompatActivity {
         boolean alquilar = ((Switch)findViewById(R.id.switchAlquilar)).isChecked();
         boolean airbnb = ((Switch)findViewById(R.id.switchairbnb)).isChecked();
         for(int i=0;i<casasFiltradas.size();i++){
-            if((casasFiltradas.get(i).getTipo().equals("comprar") && comprar) || (casasFiltradas.get(i).getTipo().equals("alquilar") && alquilar) || (casasFiltradas.get(i).getTipo().equals("airbnb") && airbnb)
+            if((casasFiltradas.get(i).getTipo().toString().toLowerCase().equals("comprar") && comprar) || (casasFiltradas.get(i).getTipo().toString().toLowerCase().equals("alquilar") && alquilar) || (casasFiltradas.get(i).getTipo().toString().toLowerCase().equals("airbnb") && airbnb)
                 ){
                     casasMostrar.add(casasFiltradas.get(i));
                 Log.i("Prueba","entra al bucle");
@@ -97,19 +110,31 @@ public class MainActivity extends AppCompatActivity {
         }
         casaAdapter.notifyDataSetChanged();
     }
+    /*
+    Método para filtrar por los campos de busqueda(Ubicación, precio y número de habitaciones
+    Comprueba si los campos se han rellenado, en caso de que esten vacios no filtra por ese valor
+    Al acabar llama al método mostrarCasas para aplicar el filtro de switch y actualizar de forma correcta la lista
+     */
     private void filtrarCasas(){
         casasFiltradas.clear();
 
+        String ubicacion="";
+        if(!((TextView)findViewById(R.id.editDireccion)).getText().toString().equals("")){
+            Log.i("InfoDireccion",((TextView)findViewById(R.id.editDireccion)).getText().toString() );
+            ubicacion = ((TextView)findViewById(R.id.editDireccion)).getText().toString().toLowerCase();
+        }
+        Log.i("InfoDireccion", ubicacion);
         int precioMax=999999999;
-        if(((TextView)findViewById(R.id.textPrecio)).getText().toString()!=null){
-            precioMax=Integer.parseInt(((TextView)findViewById(R.id.textPrecio)).getText().toString());
+        if(!((TextView)findViewById(R.id.editPrecio)).getText().toString().equals("") ){
+            precioMax=Integer.parseInt(((TextView)findViewById(R.id.editPrecio)).getText().toString());
         }
         int habitacionesMin = 0;
-        if(((TextView)findViewById(R.id.textHabitaciones)).getText().toString()!=null){
-            habitacionesMin =Integer.parseInt(((TextView)findViewById(R.id.textHabitaciones)).getText().toString());
+        if(!((TextView)findViewById(R.id.editHabitaciones)).getText().toString().equals("")){
+            habitacionesMin =Integer.parseInt(((TextView)findViewById(R.id.editHabitaciones)).getText().toString());
         }
+        Log.i("Valores",precioMax+" "+habitacionesMin);
         for(int i=0;i<casas.size();i++){
-            if(casas.get(i).getPrecio()<=precioMax && casas.get(i).getHabitaciones()>=habitacionesMin){
+            if(casas.get(i).getPrecio()<=precioMax && casas.get(i).getHabitaciones()>=habitacionesMin && (ubicacion.equals("") || casas.get(i).getDireccion().toLowerCase().contains(ubicacion))){
                 casasFiltradas.add(casas.get(i));
             }
         }

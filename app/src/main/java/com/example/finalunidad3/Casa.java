@@ -4,12 +4,12 @@ public class Casa {
     private int precio;
     private int habitaciones;
     private String direccion;
-    private String tipo;
+    private Tipo tipo;
     private int imagen;
 
 
 
-    public Casa(int precio, String direccion, String tipo, int imagen, int habitaciones) {
+    public Casa(int precio, String direccion, Tipo tipo, int imagen, int habitaciones) {
         this.precio = precio;
         this.direccion = direccion;
         this.tipo = tipo;
@@ -19,6 +19,13 @@ public class Casa {
 
     public Casa() {
     }
+
+    public enum Tipo {
+        COMPRAR,
+        ALQUILAR,
+        AIRBNB
+    }
+
 
     public int getHabitaciones() {
         return habitaciones;
@@ -44,11 +51,11 @@ public class Casa {
         this.direccion = direccion;
     }
 
-    public String getTipo() {
+    public Tipo getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
 

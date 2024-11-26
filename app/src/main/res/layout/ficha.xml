@@ -20,26 +20,36 @@
                 android:layout_marginEnd="68dp"
                 tools:srcCompat="@tools:sample/avatars" />
 
+            <TextView
+                android:id="@+id/textDireccion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_weight="1"
+                android:text="TextView"
+                android:textAlignment="textStart" />
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/textDireccion"
+                    android:id="@+id/textHabitaciones"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
                     android:layout_weight="1"
                     android:text="TextView"
-                    android:textAlignment="center" />
+                    android:textAlignment="textStart" />
 
                 <TextView
                     android:id="@+id/textTipo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_weight="5"
                     android:text="TextView"
-                    android:textAlignment="center" />
+                    android:textAlignment="textStart" />
             </LinearLayout>
 
             <LinearLayout
@@ -51,17 +61,17 @@
                     android:id="@+id/textPrecio"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:layout_weight="10"
                     android:text="TextView"
-                    android:textAlignment="center" />
+                    android:textAlignment="textStart" />
 
-                <TextView
-                    android:id="@+id/textHabitaciones"
+                <Button
+                    android:id="@+id/buttonContactar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:text="TextView"
-                    android:textAlignment="center" />
+                    android:layout_weight="0.1"
+                    android:text="Contactar" />
 
             </LinearLayout>
         </LinearLayout>
