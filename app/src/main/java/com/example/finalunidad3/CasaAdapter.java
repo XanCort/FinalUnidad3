@@ -38,8 +38,8 @@ public class CasaAdapter extends RecyclerView.Adapter<CasaAdapter.CasaViewHolder
         holder.tv_titulo.setText(casa.getDireccion());
         holder.tv_tipo.setText(casa.getTipo().toString().toLowerCase());
         holder.imageView.setImageResource(casa.getImagen());
-        holder.tv_habitaciones.setText(casa.getHabitaciones()+" habitaciones");
-        holder.tv_precio.setText(casa.getPrecio()+"€");
+        holder.tv_habitaciones.setText(casa.getHabitaciones()+" "+holder.itemView.getContext().getString(R.string.habitaciones));
+        holder.tv_precio.setText(casa.getPrecio()+""+holder.itemView.getContext().getString(R.string.moneda));
 
 
         holder.botonContactar.setOnClickListener(view -> {

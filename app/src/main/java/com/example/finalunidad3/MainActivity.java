@@ -65,8 +65,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Crear el adaptador
         casaAdapter = new CasaAdapter(casasMostrar, evento ->{
-
-            Toast.makeText(this, "Se ha notificado al vendedor", Toast.LENGTH_SHORT).show();
+            Toast.makeText(this, R.string.notificar, Toast.LENGTH_SHORT).show();
         });
 
         // Instanciar el RecyclerView

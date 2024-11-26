@@ -39,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="Dirección..."
+                android:hint="@string/contactar"
                 android:inputType="text" />
 
             <Button
@@ -47,7 +47,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="Buscar" />
+                android:text="@string/buscar" />
 
         </TableRow>
 
@@ -61,7 +61,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Precio"
+                android:hint="@string/precio"
                 android:inputType="number" />
 
             <EditText
@@ -69,7 +69,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ems="10"
-                android:hint="Habitaciones"
+                android:hint="@string/habitaciones"
                 android:inputType="number" />
 
         </TableRow>
@@ -85,7 +85,7 @@
                 android:layout_height="4dp"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="Comprar" />
+                android:text="@string/comprar" />
 
             <Switch
                 android:id="@+id/switchAlquilar"
@@ -93,7 +93,7 @@
                 android:layout_height="4dp"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="Alquilar" />
+                android:text="@string/alquilar" />
 
             <Switch
                 android:id="@+id/switchairbnb"
@@ -101,7 +101,7 @@
                 android:layout_height="4dp"
                 android:layout_weight="1"
                 android:checked="true"
-                android:text="Airbnb" />
+                android:text="@string/airbnb" />
 
         </TableRow>
     </TableLayout>

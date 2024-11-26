@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">FinalUnidad3</string>
+    <string name="notificar">Nototificouse ao vendedor</string>
+    <string name="contactar">Contactar</string>
+    <string name="direccion">Enderezo</string>
+    <string name="precio">Prezo</string>
+    <string name="habitaciones">Habitacions</string>
+    <string name="buscar">Buscar</string>
+    <string name="comprar">Mercar</string>
+    <string name="alquilar">Alugar</string>
+    <string name="moneda">€</string>
+</resources>
