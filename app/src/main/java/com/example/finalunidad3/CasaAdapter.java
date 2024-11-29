@@ -1,5 +1,6 @@
 package com.example.finalunidad3;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,18 +36,37 @@ public class CasaAdapter extends RecyclerView.Adapter<CasaAdapter.CasaViewHolder
     @Override
     public void onBindViewHolder(@NonNull CasaAdapter.CasaViewHolder holder, int position) {
         Casa casa = coleccion.get(position);
-        holder.tv_titulo.setText(casa.getDireccion());
-        holder.tv_tipo.setText(casa.getTipo().toString().toLowerCase());
-        holder.imageView.setImageResource(casa.getImagen());
-        holder.tv_habitaciones.setText(casa.getHabitaciones()+" "+holder.itemView.getContext().getString(R.string.habitaciones));
-        holder.tv_precio.setText(casa.getPrecio()+""+holder.itemView.getContext().getString(R.string.moneda));
+        if(casa!=null){
+            holder.tv_titulo.setText(casa.getDireccion());
 
-
-        holder.botonContactar.setOnClickListener(view -> {
-            if (listener != null) {
-                listener.onItemClick(casa);
+            if(casa.getTipo()!=null){
+                switch (casa.getTipo()){
+                    case COMPRAR:
+                        holder.tv_tipo.setText(holder.itemView.getContext().getString(R.string.comprar));
+                        break;
+                    case ALQUILAR:
+                        holder.tv_tipo.setText(holder.itemView.getContext().getString(R.string.alquilar));
+                        break;
+                    case AIRBNB:
+                        holder.tv_tipo.setText(holder.itemView.getContext().getString(R.string.airbnb));
+                        break;
+                    default:
+                        Log.w(holder.itemView.getContext().getString(R.string.LogValorErroneo), holder.itemView.getContext().getString(R.string.LogWarningMessageErrorTipe));
+                        break;
+                }
             }
-        });
+            holder.imageView.setImageResource(casa.getImagen());
+            holder.tv_habitaciones.setText(casa.getHabitaciones()+" "+holder.itemView.getContext().getString(R.string.habitaciones));
+            holder.tv_precio.setText(casa.getPrecio()+""+holder.itemView.getContext().getString(R.string.moneda));
+
+
+            holder.botonContactar.setOnClickListener(view -> {
+                if (listener != null) {
+                    listener.onItemClick(casa);
+                }
+            });
+        }
+
     }
 
     @Override

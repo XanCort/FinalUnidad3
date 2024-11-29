@@ -7,31 +7,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listaCasas"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tableLayout"
-        app:layout_constraintVertical_bias="1.0" />
-
-    <TableLayout
-        android:id="@+id/tableLayout"
-        android:layout_width="0dp"
-        android:layout_height="154dp"
-        android:layout_marginBottom="29dp"
-        app:layout_constraintBottom_toTopOf="@+id/listaCasas"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TableRow
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/editDireccion"
@@ -39,7 +28,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:ems="10"
-                android:hint="@string/contactar"
+                android:hint="@string/direccion"
                 android:inputType="text" />
 
             <Button
@@ -48,13 +37,12 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="@string/buscar" />
+        </LinearLayout>
 
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:orientation="horizontal">
 
             <EditText
                 android:id="@+id/editPrecio"
@@ -71,39 +59,49 @@
                 android:ems="10"
                 android:hint="@string/habitaciones"
                 android:inputType="number" />
+        </LinearLayout>
 
-        </TableRow>
-
-        <TableRow
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:id="@+id/linearLayout2"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_weight="1">
+            android:orientation="horizontal">
 
             <Switch
                 android:id="@+id/switchComprar"
                 android:layout_width="match_parent"
-                android:layout_height="4dp"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:checked="true"
                 android:text="@string/comprar" />
 
             <Switch
                 android:id="@+id/switchAlquilar"
-                android:layout_width="144dp"
-                android:layout_height="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:checked="true"
                 android:text="@string/alquilar" />
 
             <Switch
                 android:id="@+id/switchairbnb"
-                android:layout_width="200dp"
-                android:layout_height="4dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:checked="true"
                 android:text="@string/airbnb" />
+        </LinearLayout>
 
-        </TableRow>
-    </TableLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/listaCasas"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginBottom="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

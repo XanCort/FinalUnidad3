@@ -10,4 +10,9 @@
     <string name="comprar">Mercar</string>
     <string name="alquilar">Alugar</string>
     <string name="moneda">€</string>
+    <string name="TextoDeEjemplo">TextoDeExemplo</string>
+    <string name="LogValorErroneo">VALOR_ERRONEO</string>
+    <string name="LogWarningMessageErrorPrice">O valor introducido no campo prezo non e válido</string>
+    <string name="LogWarningMessageErrorRooms">O valor introducido no campo habitacions non e válido</string>
+    <string name="LogWarningMessageErrorTipe">Tipo descoñecido</string>
 </resources>

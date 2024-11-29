@@ -10,4 +10,9 @@
     <string name="alquilar" >Alquilar</string>
     <string name="airbnb" translatable="false" >Airbnb</string>
     <string name="moneda">$</string>
+    <string name="TextoDeEjemplo" >DefaultText</string>
+    <string name="LogValorErroneo">WRONG_VALUE</string>
+    <string name="LogWarningMessageErrorPrice">Wrong value entered in the precio field.</string>
+    <string name="LogWarningMessageErrorRooms">Wrong value entered in the habitaciones field</string>
+    <string name="LogWarningMessageErrorTipe">Unknown Tipo</string>
 </resources>

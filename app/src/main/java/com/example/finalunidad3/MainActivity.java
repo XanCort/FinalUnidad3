@@ -38,16 +38,17 @@ public class MainActivity extends AppCompatActivity {
         });
         casas = new ArrayList<>();
 
-        casas.add(new Casa(250000, "Calle Principal 123", Casa.Tipo.COMPRAR, R.drawable.ic_launcher_background, 3));
-        casas.add(new Casa(150000, "Avenida Secundaria 45", Casa.Tipo.ALQUILAR, R.drawable.ic_launcher_background, 2));
-        casas.add(new Casa(100000, "Boulevard del Sol 67", Casa.Tipo.AIRBNB, R.drawable.ic_launcher_background, 1));
-        casas.add(new Casa(300000, "Paseo del Parque 89", Casa.Tipo.COMPRAR, R.drawable.ic_launcher_background, 4));
-        casas.add(new Casa(180000, "Calle Las Rosas 21", Casa.Tipo.ALQUILAR, R.drawable.ic_launcher_background, 3));
-        casas.add(new Casa(120000, "Avenida Las Palmas 33", Casa.Tipo.AIRBNB, R.drawable.ic_launcher_background, 2));
-        casas.add(new Casa(280000, "Callejón del Norte 10", Casa.Tipo.COMPRAR, R.drawable.ic_launcher_background, 3));
-        casas.add(new Casa(160000, "Camino Real 55", Casa.Tipo.ALQUILAR, R.drawable.ic_launcher_background, 2));
-        casas.add(new Casa(90000, "Plaza Central 22", Casa.Tipo.AIRBNB, R.drawable.ic_launcher_background, 1));
-        casas.add(new Casa(400000, "Residencial Diamante 88", Casa.Tipo.COMPRAR, R.drawable.ic_launcher_background, 5));
+        casas.add(new Casa(250000, "Calle Principal 123", Casa.Tipo.COMPRAR, R.drawable.casa1, 3));
+        casas.add(new Casa(150000, "Avenida Secundaria 45", Casa.Tipo.ALQUILAR, R.drawable.casa2, 2));
+        casas.add(new Casa(100000, "Boulevard del Sol 67", Casa.Tipo.AIRBNB, R.drawable.casa3, 1));
+        casas.add(new Casa(300000, "Paseo del Parque 89", Casa.Tipo.COMPRAR, R.drawable.casa4, 4));
+        casas.add(new Casa(180000, "Calle Las Rosas 21", Casa.Tipo.ALQUILAR, R.drawable.casa5, 3));
+        casas.add(new Casa(120000, "Avenida Las Palmas 33", Casa.Tipo.AIRBNB, R.drawable.casa6, 2));
+        casas.add(new Casa(280000, "Callejón del Norte 10", Casa.Tipo.COMPRAR, R.drawable.casa7, 3));
+        casas.add(new Casa(160000, "Camino Real 55", Casa.Tipo.ALQUILAR, R.drawable.casa8, 2));
+        casas.add(new Casa(90000, "Plaza Central 22", Casa.Tipo.AIRBNB, R.drawable.casa9, 1));
+        casas.add(new Casa(400000, "Residencial Diamante 88", Casa.Tipo.COMPRAR, R.drawable.casa10, 5));
+        //casas.add(null);
 
         casasFiltradas = new ArrayList<>();
         casasMostrar = new ArrayList<>();
@@ -103,7 +104,6 @@ public class MainActivity extends AppCompatActivity {
             if((casasFiltradas.get(i).getTipo().toString().toLowerCase().equals("comprar") && comprar) || (casasFiltradas.get(i).getTipo().toString().toLowerCase().equals("alquilar") && alquilar) || (casasFiltradas.get(i).getTipo().toString().toLowerCase().equals("airbnb") && airbnb)
                 ){
                     casasMostrar.add(casasFiltradas.get(i));
-                Log.i("Prueba","entra al bucle");
 
             }
         }
@@ -119,17 +119,26 @@ public class MainActivity extends AppCompatActivity {
 
         String ubicacion="";
         if(!((TextView)findViewById(R.id.editDireccion)).getText().toString().equals("")){
-            Log.i("InfoDireccion",((TextView)findViewById(R.id.editDireccion)).getText().toString() );
             ubicacion = ((TextView)findViewById(R.id.editDireccion)).getText().toString().toLowerCase();
         }
         Log.i("InfoDireccion", ubicacion);
         int precioMax=999999999;
+        //Comprobamos si se ha rellenado el campo de precio y si se ha introducido un valor no válido para la busqueda
         if(!((TextView)findViewById(R.id.editPrecio)).getText().toString().equals("") ){
-            precioMax=Integer.parseInt(((TextView)findViewById(R.id.editPrecio)).getText().toString());
+            try {
+                precioMax = Integer.parseInt(((TextView) findViewById(R.id.editPrecio)).getText().toString());
+            } catch (NumberFormatException e) {
+                Log.w(this.getString(R.string.LogValorErroneo), this.getString(R.string.LogWarningMessageErrorPrice));
+            }
         }
         int habitacionesMin = 0;
+        //Comprobamos si se ha rellenado el campo de habitaciones y si se ha introducido un valor no válido para la busqueda
         if(!((TextView)findViewById(R.id.editHabitaciones)).getText().toString().equals("")){
-            habitacionesMin =Integer.parseInt(((TextView)findViewById(R.id.editHabitaciones)).getText().toString());
+            try {
+                habitacionesMin = Integer.parseInt(((TextView) findViewById(R.id.editHabitaciones)).getText().toString());
+            } catch (NumberFormatException e) {
+                Log.w(this.getString(R.string.LogValorErroneo), this.getString(R.string.LogWarningMessageErrorRooms));
+            }
         }
         Log.i("Valores",precioMax+" "+habitacionesMin);
         for(int i=0;i<casas.size();i++){

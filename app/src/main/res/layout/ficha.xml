@@ -14,7 +14,7 @@
             <ImageView
                 android:id="@+id/imageCasa"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_marginStart="36dp"
                 android:layout_marginTop="18dp"
                 android:layout_marginEnd="68dp"
@@ -26,8 +26,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_weight="1"
-                android:text="TextView"
-                android:textAlignment="textStart" />
+                android:text="@string/TextoDeEjemplo"
+                android:textAlignment="textStart"
+                android:textColor="@color/material_dynamic_tertiary0" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -40,16 +41,18 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_weight="1"
-                    android:text="TextView"
-                    android:textAlignment="textStart" />
+                    android:text="@string/TextoDeEjemplo"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/system_neutral1_300" />
 
                 <TextView
                     android:id="@+id/textTipo"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="5"
-                    android:text="TextView"
-                    android:textAlignment="textStart" />
+                    android:text="@string/TextoDeEjemplo"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/system_neutral1_300" />
             </LinearLayout>
 
             <LinearLayout
@@ -63,15 +66,17 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="10dp"
                     android:layout_weight="10"
-                    android:text="TextView"
-                    android:textAlignment="textStart" />
+                    android:text="@string/TextoDeEjemplo"
+                    android:textAlignment="textStart"
+                    android:textColor="@android:color/system_surface_container_dark"
+                    android:visibility="visible" />
 
                 <Button
                     android:id="@+id/buttonContactar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="0.1"
-                    android:text="Contactar" />
+                    android:text="@string/contactar" />
 
             </LinearLayout>
         </LinearLayout>
