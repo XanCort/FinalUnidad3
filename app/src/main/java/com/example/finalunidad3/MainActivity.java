@@ -2,6 +2,10 @@ package com.example.finalunidad3;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.ContextMenu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Switch;
@@ -10,11 +14,15 @@ import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 
@@ -56,6 +64,56 @@ public class MainActivity extends AppCompatActivity {
             casasFiltradas.add(casas.get(i));
         }
 
+        ((TextView)findViewById(R.id.editDireccion)).setOnClickListener(e->showPopUpMenu(e));
+
+
+        TabLayout tabLayout = findViewById(R.id.tabLayout);
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                if(tab.equals(tabLayout.getTabAt(1))){
+                    Log.i("PRUEBA","CLICK"+tab.getId());
+
+                    Snackbar mensaje = Snackbar.make(findViewById(R.id.main), "Proximamente", Snackbar.LENGTH_LONG);
+                    mensaje.setAction("Esto no hace nada", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Toast.makeText(getApplicationContext(), "Te he dicho que no hacia nada", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    mensaje.addCallback(new Snackbar.Callback() {
+                         @Override
+                         public void onShown(Snackbar sb) {
+                         }
+                         @Override
+                         public void onDismissed(Snackbar transientBottomBar, int event) {
+                         }
+
+                    });
+                    mensaje.show();
+
+
+                    TabLayout.Tab tab2 = tabLayout.getTabAt(0);
+                    tab2.select();
+                }
+
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+
+
+
         Switch switchComprar = findViewById(R.id.switchComprar);
         Switch switchAlquilar = findViewById(R.id.switchAlquilar);
         Switch switchAribnb = findViewById(R.id.switchairbnb);
@@ -65,7 +123,24 @@ public class MainActivity extends AppCompatActivity {
 
         // Crear el adaptador
         casaAdapter = new CasaAdapter(casasMostrar, evento ->{
-            Toast.makeText(this, R.string.notificar, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(this, R.string.notificar, Toast.LENGTH_SHORT).show();
+            Snackbar snackbar = Snackbar.make(findViewById(R.id.main), R.string.notificar, Snackbar.LENGTH_LONG);
+            snackbar.setAction("Esto tampoco hace nada", new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Toast.makeText(getApplicationContext(), "Que no que no, que no hace nada", Toast.LENGTH_SHORT).show();
+                }
+            });
+            snackbar.addCallback(new Snackbar.Callback() {
+                @Override
+                public void onShown(Snackbar sb) {
+                }
+                @Override
+                public void onDismissed(Snackbar transientBottomBar, int event) {
+                }
+
+            });
+            snackbar.show();
         });
 
         // Instanciar el RecyclerView
@@ -76,6 +151,9 @@ public class MainActivity extends AppCompatActivity {
 
         // Asignar el adaptador al RecyclerView
         rvCasas.setAdapter(casaAdapter);
+
+        registerForContextMenu(switchComprar);
+
 
         switchComprar.setOnCheckedChangeListener((switchButton,isChecked)->{
             mostrarCasas();
@@ -138,6 +216,43 @@ public class MainActivity extends AppCompatActivity {
             }
         }
         mostrarCasas();
+    }
+
+
+
+    // Método para el menú contextual, donde sew asocia el menú contrextual al textView
+//    @Override
+//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo)
+//    {
+//        menu.setHeaderTitle("Me han mandado poner esto pero no hace nada");
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.contextmenuejemplo, menu);
+//    }
+//
+//    //    // Método para gestionar los eventos de los elementos del menú contextual
+//    @Override
+//    public boolean onContextItemSelected(MenuItem item) {
+//
+//        return true;
+//    }
+
+    //    // Método para asociar un menú emergente popup al pulsar en una vista
+    public void showPopUpMenu(View view) {
+        PopupMenu popupMenu = new PopupMenu(this,view);
+        MenuInflater menuInflater = popupMenu.getMenuInflater();
+        menuInflater.inflate(R.menu.contextmenuejemplo, popupMenu.getMenu());
+
+        // Manejador de clicks
+        popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(MenuItem item) {
+                return true;
+            }
+        });
+
+        // mostrarlo
+        popupMenu.show();
+
     }
 
 
