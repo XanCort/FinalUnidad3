@@ -2,17 +2,19 @@
     <string name="app_name">FinalUnidad3</string>
     <string name="notificar">Se ha notificado al vendedor</string>
     <string name="contactar">Contactar</string>
-    <string name="direccion" >Dirección</string>
-    <string name="precio" >Precio</string>
-    <string name="habitaciones" >Habitaciones</string>
-    <string name="buscar" >Buscar</string>
-    <string name="comprar" >Comprar</string>
-    <string name="alquilar" >Alquilar</string>
-    <string name="airbnb" translatable="false" >Airbnb</string>
+    <string name="direccion">Dirección</string>
+    <string name="precio">Precio</string>
+    <string name="habitaciones">Habitaciones</string>
+    <string name="buscar">Buscar</string>
+    <string name="comprar">Comprar</string>
+    <string name="alquilar">Alquilar</string>
+    <string name="airbnb" translatable="false">Airbnb</string>
     <string name="moneda">$</string>
-    <string name="TextoDeEjemplo" >DefaultText</string>
+    <string name="TextoDeEjemplo">DefaultText</string>
     <string name="LogValorErroneo">WRONG_VALUE</string>
     <string name="LogWarningMessageErrorPrice">Wrong value entered in the precio field.</string>
     <string name="LogWarningMessageErrorRooms">Wrong value entered in the habitaciones field</string>
     <string name="LogWarningMessageErrorTipe">Unknown Tipo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
