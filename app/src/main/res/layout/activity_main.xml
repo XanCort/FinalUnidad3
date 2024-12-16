@@ -96,7 +96,14 @@
             android:id="@+id/fragmentContainerListaCasas"
             android:name="com.example.finalunidad3.FragmentListaCasa"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="445dp" />
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigationBar"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible"
+            app:menu="@menu/menuopciones" />
 
     </LinearLayout>
 
