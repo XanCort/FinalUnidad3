@@ -3,7 +3,6 @@ package com.example.finalunidad3;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -13,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
+
+import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 
@@ -60,6 +59,21 @@ public class MainActivity extends AppCompatActivity {
         Switch switchComprar = findViewById(R.id.switchComprar);
         Switch switchAlquilar = findViewById(R.id.switchAlquilar);
         Switch switchAribnb = findViewById(R.id.switchairbnb);
+
+        NavigationBarView m = findViewById(R.id.navigationBar);
+        m.setOnItemSelectedListener(e ->{
+            if(e.getItemId() == R.id.favoritos){
+                getSupportFragmentManager()
+                        .beginTransaction()
+                        .setReorderingAllowed(true)
+                        .replace(R.id.fragmentContainerListaCasas,
+                                FragmentFavoritos.class,null)
+                        .commit();
+            }else{
+                mostrarCasas();
+            }
+            return true;
+        });
 
         Button botonBuscar = findViewById(R.id.button);
         botonBuscar.setOnClickListener(view -> filtrarCasas());

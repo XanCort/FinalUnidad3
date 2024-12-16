@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".FragmentMasinformacion">
+    tools:context=".FragmentFavoritos">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:id="@+id/texto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Loren " />
+        android:gravity="center_horizontal"
+        android:text="Agregue viviendas a favoritos para que se muestren en esta pestaña" />
 
 </FrameLayout>
