@@ -1,11 +1,17 @@
 package com.example.finalunidad3;
 
-public class Casa {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+public class Casa implements Parcelable {
     private int precio;
     private int habitaciones;
     private String direccion;
     private Tipo tipo;
     private int imagen;
+
 
 
 
@@ -20,11 +26,43 @@ public class Casa {
     public Casa() {
     }
 
+    protected Casa(Parcel in) {
+        precio = in.readInt();
+        habitaciones = in.readInt();
+        direccion = in.readString();
+        imagen = in.readInt();
+    }
+
+    public static final Creator<Casa> CREATOR = new Creator<Casa>() {
+        @Override
+        public Casa createFromParcel(Parcel in) {
+            return new Casa(in);
+        }
+
+        @Override
+        public Casa[] newArray(int size) {
+            return new Casa[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int i) {
+        dest.writeString(direccion);
+
+    }
+
     public enum Tipo {
         COMPRAR,
         ALQUILAR,
         AIRBNB
     }
+
 
 
     public int getHabitaciones() {

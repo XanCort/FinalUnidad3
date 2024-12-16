@@ -69,6 +69,9 @@ public class MainActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.notificar, Toast.LENGTH_SHORT).show();
         });
 
+        /*
+
+
         // Instanciar el RecyclerView
         RecyclerView rvCasas = findViewById(R.id.listaCasas);
 
@@ -77,6 +80,23 @@ public class MainActivity extends AppCompatActivity {
 
         // Asignar el adaptador al RecyclerView
         rvCasas.setAdapter(casaAdapter);
+*/
+        FragmentListaCasa fragment = new FragmentListaCasa();
+
+        Bundle b = new Bundle();
+        b.putParcelableArrayList("ListaCasas",casas);
+        b.putString("Prueba","Prueba");
+
+        fragment.setArguments(b);
+
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .add(R.id.fragmentContainerListaCasas,
+                        fragment)
+                .commit();
+
 
         switchComprar.setOnCheckedChangeListener((switchButton,isChecked)->{
             mostrarCasas();
@@ -107,7 +127,22 @@ public class MainActivity extends AppCompatActivity {
 
             }
         }
-        casaAdapter.notifyDataSetChanged();
+        //casaAdapter.notifyDataSetChanged();
+        Bundle b = new Bundle();
+        b.putParcelableArrayList("ListaCasas",casasMostrar);
+        b.putString("Prueba","Prueba");
+
+        FragmentListaCasa fragment = new FragmentListaCasa();
+
+        fragment.setArguments(b);
+
+        getSupportFragmentManager()
+                .beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.fragmentContainerListaCasas,
+                        fragment)
+                .commit();
+
     }
     /*
     Método para filtrar por los campos de busqueda(Ubicación, precio y número de habitaciones
