@@ -73,11 +73,11 @@ public class FragmentListaCasa extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_lista_casa, container, false);
         if(casas == null){
-            Log.i("PRUEBA","ES NULL");
         }else{
             // Crear el adaptador
             CasaAdapter casaAdapter = new CasaAdapter(casas, evento ->{
             });
+
 
             RecyclerView rvCasas = view.findViewById(R.id.ListaCasas);
 
